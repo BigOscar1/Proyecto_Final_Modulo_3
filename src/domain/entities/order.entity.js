@@ -8,10 +8,10 @@ class Order {
     createdAt,
     updatedAt
   ) {
-    this.id = id; // string (ObjectId convertido a string)
+    this.id = id; 
     this.customerName = customerName;
     this.items = items.map((item) => ({
-      productId: item.productId, // string (ObjectId convertido a string)
+      productId: item.productId, 
       name: item.name,
       price: item.price,
       quantity: item.quantity,

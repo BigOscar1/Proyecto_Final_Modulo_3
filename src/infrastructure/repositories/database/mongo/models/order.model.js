@@ -14,7 +14,7 @@ const orderSchema = new mongoose.Schema(
           ref: "Product",
           required: true,
         },
-        name: { type: String, required: true }, // nombre del producto en el momento de la compra
+        name: { type: String, required: true }, // nombre del producto  (Cuando se realizo la compra)
         price: { type: Number, required: true, min: 0 }, // precio histórico
         quantity: { type: Number, required: true, min: 1 },
         subtotal: { type: Number, required: true, min: 0 }, // price * quantity
