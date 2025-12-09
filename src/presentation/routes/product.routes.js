@@ -4,7 +4,7 @@ const ProductController = require('../controller/product.controller');
 // const isAdmin = require('../middlewares/admin.middleware');
 
 // Esta es la "Inyección de Dependencias" manual
-const ProductService = require('../../aplication/use-cases/product.service');
+const ProductService = require('../../application/use-cases/product.service');
 
 const ProductMongoRepository = require('../../infrastructure/repositories/database/mongo/product.mongo.repository');
 const productRepository = new ProductMongoRepository();
