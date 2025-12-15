@@ -148,7 +148,6 @@ const swaggerDefinition = {
         },
       },
 
-      
       Auth: {
         type: "object",
         properties: {
@@ -188,7 +187,6 @@ const swaggerDefinition = {
           token: { type: "string", example: "eyJhbGciOiJIUzI1NiIsInR5cCI6..." },
         },
       },
-
 
       User: {
         type: "object",
@@ -237,6 +235,91 @@ const swaggerDefinition = {
             example: ["user"],
           },
         },
+      },
+
+      Coupon: {
+        type: "object",
+        properties: {
+          id: {
+            type: "string",
+            example: "60c72b2f9b1e8a001f8e4cbb",
+          },
+          code: {
+            type: "string",
+            example: "PRIMERPEDIDO2025",
+          },
+          description: {
+            type: "string",
+            example: "Descuento para el primer pedido de nuevos usuarios",
+          },
+          discountPercentage: {
+            type: "number",
+            minimum: 0,
+            maximum: 100,
+            example: 20,
+            description: "Porcentaje de descuento aplicado",
+          },
+          validFrom: {
+            type: "string",
+            format: "date-time",
+            example: "2025-12-14T00:00:00Z",
+          },
+          validUntil: {
+            type: "string",
+            format: "date-time",
+            example: "2025-12-31T23:59:59Z",
+          },
+          isActive: {
+            type: "boolean",
+            example: true,
+          },
+          createdAt: {
+            type: "string",
+            format: "date-time",
+            example: "2025-12-14T15:00:00Z",
+          },
+          updatedAt: {
+            type: "string",
+            format: "date-time",
+            example: "2025-12-14T15:30:00Z",
+          },
+        },
+        required: ["code", "discountPercentage", "validFrom", "validUntil"],
+      },
+
+      CouponInput: {
+        type: "object",
+        properties: {
+          code: {
+            type: "string",
+            example: "PRIMERPEDIDO2025",
+          },
+          description: {
+            type: "string",
+            example: "Descuento para el primer pedido de nuevos usuarios",
+          },
+          discountPercentage: {
+            type: "number",
+            minimum: 0,
+            maximum: 100,
+            example: 20,
+          },
+          validFrom: {
+            type: "string",
+            format: "date-time",
+            example: "2025-12-14T00:00:00Z",
+          },
+          validUntil: {
+            type: "string",
+            format: "date-time",
+            example: "2025-12-31T23:59:59Z",
+          },
+          isActive: {
+            type: "boolean",
+            example: true,
+          },
+        },
+        required: ["code", "discountPercentage", "validFrom", "validUntil"],
       },
     },
   },

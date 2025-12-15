@@ -1,7 +1,10 @@
 const { BaseError } = require("../../domain/errors");
 
 function errorHandler(err, req, res, next) {
-  console.log(BaseError);
+  console.error("=== ERROR DETECTED ===");
+  console.error(err);
+  console.error("=====================");
+
   if (err instanceof BaseError) {
     return res.status(err.statusCode).json({
       message: err.message,
@@ -9,15 +12,14 @@ function errorHandler(err, req, res, next) {
   }
 
   // Manejo de errores de Mongoose
-  if (err.name === "ValidationError") {
-    return res.status(400).json({
-      message: err.message, // "Product validation failed: stock: Path `stock` is required."
-      errors: err.errors, // detalles por campo
-    });
-  }
+  // console.log("Mongoose Error Name:", err.name);
+  // if (err.name === "ValidationError") {
+  //   return res.status(400).json({
+  //     message: err.message, 
+  //     errors: err.errors, // detalles por campo
+  //   });
+  // }
 
-  // log the error for debugging purposes
-  console.error(err);
 
   // send a generic error response
   res.status(500).json({

@@ -5,6 +5,7 @@ class Order {
     items,
     total,
     paymentType,
+    coupon,
     createdAt,
     updatedAt
   ) {
@@ -19,6 +20,7 @@ class Order {
     }));
     this.total = total;
     this.paymentType = paymentType;
+    // this.coupon = coupon;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }

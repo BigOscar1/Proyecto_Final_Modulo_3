@@ -4,8 +4,10 @@ const OrderController = require("../controller/order.controller");
 // Inyección de Dependencias manual
 const OrderService = require("../../application/use-cases/order.service");
 const OrderMongoRepository = require("../../infrastructure/repositories/database/mongo/order.mongo.repository");
+// const CouponMongoRepository = require("../../infrastructure/repositories/database/mongo/coupon.mongo.repository");
 
 const orderRepository = new OrderMongoRepository();
+// const couponRepository = new CouponMongoRepository();
 const orderService = new OrderService(orderRepository);
 const orderController = new OrderController(orderService);
 

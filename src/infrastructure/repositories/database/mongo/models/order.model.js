@@ -30,6 +30,7 @@ const orderSchema = new mongoose.Schema(
       enum: ["efectivo", "tarjeta", "transferencia", "QR"],
       default: "efectivo",
     },
+    // coupon: { type: mongoose.Schema.Types.ObjectId, ref: "coupon", default: null },
   },
   { timestamps: true }
 );

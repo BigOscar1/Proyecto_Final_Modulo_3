@@ -4,6 +4,9 @@ const RoleService = require("../../application/use-cases/role.service");
 const RoleMongoRepository = require("../../infrastructure/repositories/database/mongo/role.mongo.repository");
 const asyncHandler = require("../utils/async.handler");
 
+const authenticateToken = require("../middlewares/auth.middleware");
+const isAdmin = require("../middlewares/admin.middleware");
+
 const roleRepository = new RoleMongoRepository();
 const roleService = new RoleService(roleRepository);
 const roleController = new RoleController(roleService);
@@ -61,6 +64,9 @@ router.get("/:id", asyncHandler(roleController.getById));
  *     tags:
  *       - Roles
  *     summary: Create a new role
+ *     description: Requires authentication token and role *admin*
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -79,7 +85,14 @@ router.get("/:id", asyncHandler(roleController.getById));
  *       409:
  *         description: Role with this name already exists
  */
-router.post("/", asyncHandler(roleController.create));
+
+// RUTAS RESTRINGIDAS SOLO PARA ADMIN
+router.post(
+  "/",
+  authenticateToken,
+  isAdmin,
+  asyncHandler(roleController.create)
+);
 
 /**
  * @swagger
@@ -88,6 +101,9 @@ router.post("/", asyncHandler(roleController.create));
  *     tags:
  *       - Roles
  *     summary: Update a role
+ *     description: Requires authentication token and role *admin*
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -110,13 +126,21 @@ router.post("/", asyncHandler(roleController.create));
  *       404:
  *         description: Role not found
  */
-router.put("/:id", asyncHandler(roleController.update));
+router.put(
+  "/:id",
+  authenticateToken,
+  isAdmin,
+  asyncHandler(roleController.update)
+);
 
 /**
  * @swagger
  * /roles/{id}:
  *   delete:
  *     summary: Delete a role
+ *     description: Requires authentication token and role *admin*
+ *     security:
+ *       - bearerAuth: []
  *     tags:
  *       - Roles
  *     parameters:
@@ -131,6 +155,11 @@ router.put("/:id", asyncHandler(roleController.update));
  *       404:
  *         description: User not found
  */
-router.delete("/:id", asyncHandler(roleController.delete));
+router.delete(
+  "/:id",
+  authenticateToken,
+  isAdmin,
+  asyncHandler(roleController.delete)
+);
 
 module.exports = router;
